@@ -1,0 +1,26 @@
+doctype html
+html(lang='en')
+    head
+        meta(charset='UTF-8')
+
+        title PointsUp!
+    body 
+        br
+        br
+        // student is going to be the thing passed when rendered
+        p You are now logged as: #{student.name}
+        button(type='button',onclick=`location.href = '/${student._id}/profile'`) Go to Profile
+        br
+        // The name of the organization passed through query is going to be here
+        p #{organization}
+        br
+        br
+        button(type='button',onclick="location.href = '/sign_out'") Sign Out
+        br
+        br
+        block content
+        br
+        br
+        br
+        footer
+            p Created by David Wang! Contact David by sending an email to wangwang@wisc.edu

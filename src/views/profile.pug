@@ -1,0 +1,24 @@
+extends page_layout
+
+block content
+    h1 Hello #{student.name}! Welcome to this weird place
+    br
+    br
+    ul
+        each point in totalpoints
+            li
+                h3= point.p_org_name
+                p You currently have #{point.allpoints} points in that organization!
+                br
+                p If you want to check all the events you have participated throughout the semester, press the button!
+                button(type='button',onclick=`location.href = '/${student._id}/${point.p_org_shname}/logs'`) Check Logs
+                p Check if there is any new events
+                button(type='button',onclick=`location.href = '/${student._id}/${point.p_org_shname}/desc'`) Check Events
+    br
+    br
+    p In case you are wandering how to get more points, just check if your organization has any events in the events tab.
+    p Go to the event and they are supposed to show you a pin. You will just need to write this pin in the password
+    p box in the events tab and bum! You got some points!
+    br
+    br
+    button(type='button',onclick=`location.href = '/${student._id}/organization/all'`) Explore organizations!

@@ -1,0 +1,20 @@
+extends page_layout
+
+block content
+    h1 Add Organization Form
+    form(method="POST", action=`/${student._id}/organization/add`)
+        div
+            label(for='org_name') Enter the full name of your organization
+            input#org_name(type='text', placeholder="Organization's name" name='org_name')
+        div
+            label(for='org_short_name') Enter short name of your organization (without spaces)
+            input#org_short_name(type='text', placeholder="Org's short name" name='org_short_name')
+        div
+            label(for='org_desc') Enter a description of your organization
+            input#org_desc(type='text', placeholder="Description" name='org_desc')
+        div
+            button(type='submit') Press!
+    br
+    p I really wanted to allow you guys to put some images for your organization, but, my free database barely has any memory and I can't afford
+    p anyone uploading a 8K image of their logo (I think it will break everything). Maybe in the future when people actually wants to use this 
+    p website (and get some donations ;)) I may include that feature.

@@ -1,0 +1,19 @@
+extends page_layout
+
+block content
+    h1 Check out other organizations!
+    if isEmpty
+        p Sorry, currently there are no Organizations registered in my little and poor website :c. Feel free to add one!
+    else 
+        ul
+            each organization in orglist
+                li 
+                    p= organization.org_name
+                    button(type="button",onclick=`location.href = '/${student._id}/${organization.org_short_name}/desc'`) Wanna take a look?
+    br
+    br
+    h2 Wanna add some organizations? If so, press the button!
+    p I know there is no way to check if you are the president or the tech chair of the organization you plan to create.
+    p However, if you create an organization in which you are clearly not part of or are not in the position to be an admin of,
+    p David will delete it from the database
+    button(type="button",onclick=`location.href = '/${student._id}/organization/addform'`) Add Your Organization

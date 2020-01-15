@@ -1,0 +1,17 @@
+{
+    "event_name": "Nothing",
+    "event_day": {
+        "$date": {
+            "$numberLong": "1580007323137"
+        }
+    },
+    "duration": {
+        "$numberInt": "90"
+    },
+    "password": "hn",
+    "tag": "gen",
+    "value": {
+        "$numberInt": "2"
+    },
+    "status": "Done"
+}

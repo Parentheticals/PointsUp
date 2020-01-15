@@ -1,0 +1,16 @@
+extends page_layout
+
+block content
+    if admin
+        h2 I see you are also the admin of this organization. Wanna check out all of the points people in your organization have?
+        br
+        button(type='button',onclick=`location.href = '/${student._id}/${org_data.org_short_name}/studentlogs'`) Check all members' logs
+        br
+    h1 This page will show all the events you have participated in #{org_data.org_name}
+    br
+    ul
+        each log in logs
+            li
+                h4= log.event_name
+                p Date of the event: #{log.event_time}
+                p The amount of points that you got from that event is: #{log.value}

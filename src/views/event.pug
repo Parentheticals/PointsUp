@@ -1,0 +1,28 @@
+extends page_layout
+
+block content
+    // The variable "isEmpty" passes if there are no events in an organization
+    if isEmpty
+        p Sorry but currently there are no Events in the organization. If you think this shouldn't be the case, contact an admin of your organization.
+    else 
+        ul
+            each event in eventlist
+                li
+                    - var allowpass = event.openpass
+                    h1 #{event.event_name}
+                    p Event Description: #{event.description}
+                    p Event Day: #{event.event_day}
+                    p Event Duration: #{event.duration}
+                    p Event Status: #{event.status}
+                    if allowpass
+                        form(method='POST' action=`/${student._id}/${event.event_name}/event`)
+                            label(for='pw') Enter a four letter ping in order to sign into this event!
+                            input#pw(type='password', name='password')
+                            button(type='submit') Press!
+                    else
+                        p Currently you are unable to sign into the event. This is because it has not started yet or it has already ended.
+    if addevent
+        br
+        br
+        h1 Add an event for your organization!
+                    

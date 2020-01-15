@@ -1,0 +1,12 @@
+extends page_layout
+
+block content
+    h1 Welcome to the Admin Logs!
+    p Here you will be able to see the points of every single member inside your organization: (#{org_data.org_name})
+    br
+    ul
+        each student in data
+            li
+                h4= student.studentname
+                p= student.points
+
