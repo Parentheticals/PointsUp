@@ -233,12 +233,14 @@ router.get('/:userId/:organization/logs',needsLog,(req,res,next)=>{
                         return next(err);
                     }
                     let logs = [];
+                    let day = [];
                     for(var i = 0; i<user.points.length; i++){
                         // console.log(user.points[i].p_org);
                         // console.log(org[0].org_name);
                         if(user.points[i].p_org == org.org_name){
                             // console.log("Got here");
                             logs.push(user.points[i]);
+                            day.push(moment(user.points[i].event_time).tz('America/Chicago').format('YYYY-MM-DD HH:mm:ss'));
                         }
                     }
                     let isadmin = false;
@@ -252,6 +254,7 @@ router.get('/:userId/:organization/logs',needsLog,(req,res,next)=>{
                         student: user,
                         page: `${org.org_short_name}'s Logs`,
                         org_data: org,
+                        date: day,
                         logs: logs,
                         admin: isadmin
                     })

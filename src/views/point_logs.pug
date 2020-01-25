@@ -9,9 +9,11 @@ block content
     h1 This page will show all the events you have participated in #{org_data.org_name}
     br
     ul.org
+        - var i = 0;
         each log in logs
             li.list
                 h4= log.event_name
-                p Date of the event: #{log.event_time}
+                p Date of the event: #{date[i]} CST
+                - i++;
                 p The amount of points that you got from that event is: #{log.value}
             br
