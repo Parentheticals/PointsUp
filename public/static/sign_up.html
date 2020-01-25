@@ -9,11 +9,14 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         
-        <link rel="stylesheet" type="text/css" href="../stylesheets/sign_up.css"> 
+        <link rel="stylesheet" type="text/css" href="../stylesheet/sign_up.css"> 
 
         <title> Sign Up for PointsUp!</title>
     </head>
     <body>
+        <br>
+        <br>
+        <br>
         <div class="container">
             <div class="row">
                 <div class="col-md-3">
@@ -21,16 +24,17 @@
                 <div class="col-md-6 main">
                     <form action="/sign_up" method="POST">
                         <h1> SignUp Here </h1>
+                        <p> Full Name: </p>
                         <input class = "box" type="text" name="name" id="name" placeholder="Put your name here" required />
                         <br>
+                        <p> Wisc-email address: </p>
                         <input class = "box" type="email" name="email" id="email" placeholder="Please, use your wisc email" required />
                         <br>
+                        <p> Password: </p>
                         <input class = "box" type="password" name="password" id="password" placeholder="So, make a password!" required /> 
-                        <br>
                         <p> 
-                            By the way, the only way to be able to sign up/sign in as an admin is to contact David via: wangwang@wisc.edu. Thank you
-                            for understanding.
-                            If you get redirect to this page, just press the already have an account button and sign in. There is just a bug.
+                            Just in case, your password is going to be encrypted so... If you forget your password, David won't be able to just tell what you password was. 
+                            But don't worry, just contact David and let him figure out what to do.
                         </p>
                         <br>
                         <input type="submit" id="submitDetails" name="submitDetails" value="Submit" />
@@ -40,8 +44,15 @@
                 <div class="col-md-3"> </div>
             </div>
         </div>
+        <br>
+        <br>
         <div class = "container">
-            <button type= "button" onclick= "location.href = '/to_sign_in'">I already have an account</button>
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    <button type= "button" onclick= "location.href = '/to_sign_in'">I already have an account</button>
+                </div>
+            </div>
         </div>
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
