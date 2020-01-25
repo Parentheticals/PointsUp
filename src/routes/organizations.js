@@ -96,7 +96,7 @@ router.get('/:userId/:organization/desc',needsLog,(req,res,next)=>{
             } else {
                 if(org!=null){
                     // Get Events
-                    EventModel.find({organization: org.org_name})
+                    EventModel.find({organization: org.org_name}).sort({event_day: 1})
                         .exec((err,events)=>{
                             let del = 0;
                             // Update the events

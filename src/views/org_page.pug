@@ -25,10 +25,11 @@ block content
                     - var allowpass = event.openpass
                     h3 #{event.event_name}
                     p #[strong Event Description:] #{event.description}
-                    p #[strong Event Day:] #{event.event_day}
+                    - var day = event.event_day.toString();
+                    p #[strong Event Day:] #{day}
                     p #[strong Event Duration:] #{event.duration} minutes
                     p #[strong Event Location:] #{event.location}
-                    if event.status == ongoing
+                    if event.status == "Ongoing"
                         p #[strong Event Status:] 
                             span.ongoing #{event.status}
                     else 
