@@ -3,22 +3,32 @@ html(lang='en')
     head
         meta(charset='UTF-8')
 
+        meta(name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no")
+
+        link(rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous")
+
+        style
+            include ../../public/stylesheet/layout.css
+            include ../../public/stylesheet/lists.css
+            include ../../public/stylesheet/forms.css
+            include ../../public/stylesheet/misc.css
+
         title PointsUp!
     body 
+        ul.navbar
+            li.navlogo
+                a.logo Points Up!
+            li
+                a.top(href=`/${student._id}/profile`) You are currently logged as: #{student.name}
+            li
+                p.top You are currently in: #{page}
+            li.nav
+                a.navi(href="/sign_out") Sign Out
+        div.line
         br
-        br
-        // student is going to be the thing passed when rendered
-        p You are now logged as: #{student.name}
-        button(type='button',onclick=`location.href = '/${student._id}/profile'`) Go to Profile
-        br
-        // The name of the organization passed through query is going to be here
-        p #{organization}
-        br
-        br
-        button(type='button',onclick="location.href = '/sign_out'") Sign Out
-        br
-        br
-        block content
+        div.cont
+            block content
         br
         br
         br

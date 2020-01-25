@@ -34,7 +34,7 @@ router.get('/:userId/organization/all',needsLog,(req,res,next)=>{
                     }
                     res.render('organization_list',{
                         student: user,
-                        organization: "All",
+                        page: "All Organizations",
                         orglist: orgs,
                         isEmpty: empty
                     })
@@ -50,7 +50,7 @@ router.get('/:userId/organization/addform',needsLog,(req,res,next)=>{
             } else {
                 res.render('add_org_form',{
                     student: user,
-                    organization: "Adding an organization"
+                    page: "Adding an organization"
                 })
             }
         })
@@ -170,7 +170,7 @@ router.get('/:userId/:organization/desc',needsLog,(req,res,next)=>{
                                             // console.log(empty);
                             
                                             res.render('org_page',{
-                                                organization: org.org_name,
+                                                page: org.org_name,
                                                 org_data: org,
                                                 student: user,
                                                 eventlist: events,
@@ -244,7 +244,7 @@ router.get('/:userId/:organization/logs',needsLog,(req,res,next)=>{
                     // console.log(logs);
                     res.render('point_logs',{
                         student: user,
-                        organization: "Logs",
+                        page: `${org.org_short_name}'s Logs`,
                         org_data: org,
                         logs: logs,
                         admin: isadmin
@@ -284,14 +284,14 @@ router.get('/:userId/:organization/studentlogs',needsLog,(req,res,next)=>{
                                             // console.log(studentlist[i].name),
                                             // console.log(sum),
                                             studentdata.push({
-                                                studentname: studentlist[i].name,
+                                                studentname: studentlist[i],
                                                 points: sum
                                             })
                                         }
                                         // console.log(studentdata);
                                         res.render('admin_log',{
                                             student: user,
-                                            organization: "AdminLogs",
+                                            page: `${org.org_short_name}'s AdminLogs`,
                                             org_data: org,
                                             data: studentdata
                                         })
@@ -299,6 +299,33 @@ router.get('/:userId/:organization/studentlogs',needsLog,(req,res,next)=>{
                                 })
                         }
                     })
+            }
+        })
+})
+
+router.get('/:userId/:organization/leave',(req,res,next)=>{
+    StudentModel.findById(req.params.userId)
+        .exec((err,user)=>{
+            if(err){
+                return next(err);
+            } else {
+                OrgSchema.findOne({org_short_name: req.params.organization})
+                    .exec((err,org)=>{
+                        console.log(2)
+                        if(err){
+                            return next(err);
+                        } else {
+                            for(var i = 0; i<user.organization.length;i++){
+                                console.log(3)
+                                if(user.organization[i].org_name == org.org_name){
+                                    user.organization.splice(i,1);
+                                    user.save();
+                                    break;
+                                }
+                            }
+                            res.redirect(`/${user._id}/profile`);
+                        }
+                })
             }
         })
 })

@@ -1,29 +1,43 @@
 extends page_layout
 
 block content
-    h1 Add Event Form
-    form(method="POST", action=`/${student._id}/${org_data.org_short_name}/addevent`)
-        div
-            label(for='event_name') Enter the name of the event
-            input#event_name(type='text', placeholder="Event's name" name='event_name' required)
-        div
-            label(for='event_day') Enter the date of the event
-            input#event_day(type='datetime-local', placeholder="Event's day" name='event_day' required)
-        //- div
-        //-     label(for='event_time') Enter the time of the event
-        //-     input#event_time(type='time', placeholder="Event's time" name='event_time' required)
-        div
-            label(for='duration') Add the duration of the event (in minutes)
-            input#duration(type='number', placeholder="Duration" name='duration' required)
-        div
-            label(for='description') Add a description of the event (Optional)
-            input#description(type='text', placeholder="Description" name='description' required)
-        div
-            label(for='pw') Add the password needed for people to sign in to participate. Add a 4 number pin
-            input#pw(type='password', placeholder="Password (PIN)" name='pw' required)
-        div
-            label(for='value') The amount of points the event is worth
-            input#value(type='number', placeholder="Points" name='value' required)
-        div
-            p Please, double check before submitting! Currently there is no way to update/edit events.
-            button(type='submit') Submit!
+    .col-md-8.center.boxcolor
+        br
+        h1.center Add Event Form
+        br
+        form.form(method="POST", action=`/${student._id}/${org_data.org_short_name}/addevent`)
+            div
+                label(for='event_name') Enter the name of the event
+                input.finput#event_name(type='text', placeholder="Event's name" name='event_name' required)
+            div
+                label(for='event_day') Enter the date of the event
+                input.finput#event_day(type='datetime-local', placeholder="Event's day" name='event_day' required)
+            //- div
+            //-     label(for='event_time') Enter the time of the event
+            //-     input#event_time(type='time', placeholder="Event's time" name='event_time' required)
+            div
+                label(for='duration') Add the duration of the event (in minutes)
+                input.finput#duration(type='number', placeholder="Duration" name='duration' required)
+            div
+                label(for='location') Place the event is going to be held
+                input.finput#location(type='text', placeholder="Location" name='location' required)
+            div
+                label(for='description') Add a description of the event
+                br
+                textarea.boxtext(name='description' required)
+                //- input#description(type='text', placeholder="Description" name='description' required)
+            div
+                label(for='pw') Add the password needed for people to sign in to participate. Add a 4 number pin
+                input.finput#pw(type='password', placeholder="Password (PIN)" name='pw' required)
+            div
+                label(for='value') The amount of points the event is worth
+                input.finput#value(type='number', placeholder="Points" name='value' required)
+            div
+                br
+                p Please, double check before submitting! Currently there is no way to update/edit events.
+                p If you want to add the logo of your organization, please, send a picture of your logo (with transparent background) to David via email
+                br
+                button.fbutton(type='submit') Submit!
+                br
+                br
+        button.fbutton(type='button',onclick=`location.href = '/${student._id}/${org_data.org_short_name}/desc'`) Y'know, I've changed my mind. I don't want to add an event.

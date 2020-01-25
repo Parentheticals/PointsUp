@@ -21,7 +21,7 @@ function needsLog(req,res,next){
 }
 
 // Get information of the person that logged in
-router.get('/:userId/profile',needsLog,(req,res,next)=>{
+router.get('/:userId/profile',(req,res,next)=>{
 
     // debug
     // console.log("Here");
@@ -76,10 +76,40 @@ router.get('/:userId/profile',needsLog,(req,res,next)=>{
                         return res.render('profile',{
                             student: user,
                             totalpoints: arraysum,
-                            organization: "BRUH"
+                            page: "Profile"
                         })
                     }
                 })
+        })
+})
+
+router.get('/:userId/:organization/studentlogs/:memberId', (req,res,next)=>{
+    StudentModel.findById(req.params.memberId)
+        .exec((err,member)=>{
+            if(err){
+                return next(err);
+            } else {
+                OrgSchema.findOne({org_short_name: req.params.organization})
+                    .exec((err,org)=>{
+                        if(err){
+                            return next(err);
+                        } else {
+                            StudentModel.findById(req.params.userId)
+                                .exec((err,user)=>{
+                                    if(err){
+                                        return next(err);
+                                    } else {
+                                        let data = {
+                                            ad_org_name: org.org_name
+                                        }
+                                        member.adminorganization.push(data);
+                                        member.save()
+                                        res.redirect(`/${user._id}/${org.org_short_name}/studentlogs`)
+                                    }
+                                })
+                        }
+                    })
+            }
         })
 })
 

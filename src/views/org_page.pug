@@ -10,34 +10,48 @@ block content
     unless joined
         p Join this organizations now!
         p By the way, joining here is not the same as officionally joining the group. You still have to contact them.
-        button(type='button',onclick=`location.href = '/${student._id}/${org_data.org_short_name}/join'`) Yeah, I wanna join
-    p Check out the events we host!
+        button.button(type='button',onclick=`location.href = '/${student._id}/${org_data.org_short_name}/join'`) Yeah, I wanna join
+        br
+        br
+    h2 Here is a list of the events we are going to host:
 
     // The variable "isEmpty" passes if there are no events in an organization
     if isEmpty
         p Sorry but currently there are no Events in the organization. If you think this shouldn't be the case, contact an admin of your organization.
     else 
-        ul
+        ul.org
             each event in eventlist
-                li
+                li.list
                     - var allowpass = event.openpass
-                    h1 #{event.event_name}
-                    p Event Description: #{event.description}
-                    p Event Day: #{event.event_day}
-                    p Event Duration: #{event.duration} minutes
-                    p Event Status: #{event.status}
-                    if allowpass
-                        form(method='POST' action=`/${student._id}/${org_data.org_short_name}/${event._id}/pass`)
-                            label(for='pw') Enter a four letter ping in order to sign into this event!
-                            input#pw(type='password', name='password')
-                            button(type='submit') Press!
-                        p If you want to check that you signed into the event, you can check the logs
+                    h3 #{event.event_name}
+                    p #[strong Event Description:] #{event.description}
+                    p #[strong Event Day:] #{event.event_day}
+                    p #[strong Event Duration:] #{event.duration} minutes
+                    p #[strong Event Location:] #{event.location}
+                    if event.status == ongoing
+                        p #[strong Event Status:] 
+                            span.ongoing #{event.status}
+                    else 
+                        p #[strong Event Status:] 
+                            span.scheduled #{event.status}
+                    - var found = false;
+                    each point in student.points
+                        if point.event_name == event.event_name
+                            - found = true;
+                    if found
+                        p.gotpoints You have successfully claimed your points!
                     else
-                        p Currently you are unable to sign into the event. This is because it has not started yet or it has already ended.
+                        if allowpass
+                            form(method='POST' action=`/${student._id}/${org_data.org_short_name}/${event._id}/pass`)
+                                label(for='pw') Enter a four letter ping in order to sign into this event!
+                                input#pw(type='password', name='password')
+                                button.button(type='submit') Claim Points!
+                        else
+                            p Currently you are unable to sign into the event. This is because it has not started yet or it has already ended.
+                    
                     if addevent
-                        button(type='button',onclick=`location.href = '/${student._id}/${org_data.org_short_name}/${event._id}/delete'`) Delete the event
+                        button.button(type='button',onclick=`location.href = '/${student._id}/${org_data.org_short_name}/${event._id}/delete'`) Delete the event
     if addevent
         br
-        br
-        h1 Add an event for your organization!
-        button(type='button',onclick=`location.href = '/${student._id}/${org_data.org_short_name}/addeventform'`) Add it rn!
+        h3 Add an event for your organization!
+        button.button(type='button',onclick=`location.href = '/${student._id}/${org_data.org_short_name}/addeventform'`) Add it rn!

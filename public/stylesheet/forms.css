@@ -1,0 +1,49 @@
+.finput{ 
+    font-family: 'Helvetica', serif; 
+    width: 100%; 
+    font-size: 20px; 
+    padding: 12px 20px; 
+    margin: 8px 0;
+    background-color: #Ccecff;
+    border: none; 
+    border-bottom: 2px solid #0096c9; 
+} 
+.finput[type=submit] { 
+    font-family: 'Helvetica', serif; 
+    width: 100%; 
+    background-color: #0096c9; 
+    border: none; 
+    color: #Ccecff; 
+    padding: 16px 32px; 
+    margin: 4px 2px; 
+    border-radius: 10px; 
+}
+.fbutton {
+    font-family: 'Helvetica', serif; 
+    width: 100%; 
+    background-color: #0096c9; 
+    border: none; 
+    color: #Ccecff; 
+    padding: 16px 32px; 
+    margin: 4px 2px; 
+    border-radius: 10px; 
+}
+.center {
+    margin: auto;
+}
+
+.boxcolor {
+    background-color: #Ccecff;
+    border: 2px solid #0096c9;
+}
+
+.boxtext {
+    width: 100%;
+    height: 100px;
+    resize: none;
+    background-color: #Ccecff;
+}
+
+h1.center{
+    text-align: center;
+}

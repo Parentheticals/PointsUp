@@ -1,0 +1,49 @@
+body.sign{
+    background-color: #Ccecff
+}
+
+.main{ 
+    padding:20px; 
+    font-family: 'Helvetica', serif; 
+    background-color: #Ccecff; 
+} 
+.main h1{ 
+    font-size: 40px; 
+    text-align:center; 
+    font-family: 'Helvetica', serif; 
+      
+} 
+input{ 
+    font-family: 'Helvetica', serif; 
+    width: 100%; 
+    font-size: 20px; 
+    padding: 12px 20px; 
+    margin: 8px 0;
+    background-color: #Ccecff;
+    border: none; 
+    border-bottom: 2px solid #0096c9; 
+} 
+input[type=submit] { 
+    font-family: 'Helvetica', serif; 
+    width: 100%; 
+    background-color: #0096c9; 
+    border: none; 
+    color: #Ccecff; 
+    padding: 16px 32px; 
+    margin: 4px 2px; 
+    border-radius: 10px; 
+}
+button {
+    font-family: 'Helvetica', serif; 
+    width: 100%; 
+    background-color: #0096c9; 
+    border: none; 
+    color: #Ccecff; 
+    padding: 16px 32px; 
+    margin: 4px 2px; 
+    border-radius: 10px; 
+}
+
+.formc{
+    background-color: #Ccecff
+}

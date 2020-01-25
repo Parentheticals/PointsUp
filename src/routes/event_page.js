@@ -40,7 +40,7 @@ router.get('/:userId/:organization/addeventform',needsLog,(req,res,next)=>{
                         if(adminorg){
                             res.render('add_event_form',{
                                 student: user,
-                                organization: org.org_name,
+                                page: org.org_name,
                                 org_data: org,
                             })
                         } else {
@@ -65,6 +65,7 @@ router.post('/:userId/:organization/addevent',(req,res)=>{
             let event = {
                 event_name: req.body.event_name,
                 event_day: req.body.event_day,
+                location: req.body.location,
                 description: req.body.description,
                 duration: req.body.duration,
                 password: req.body.pw,

@@ -4,9 +4,19 @@ block content
     h1 Welcome to the Admin Logs!
     p Here you will be able to see the points of every single member inside your organization: (#{org_data.org_name})
     br
-    ul
-        each student in data
-            li
-                h4= student.studentname
-                p= student.points
+    ul.org
+        each person in data
+            li.list
+                h4= person.studentname.name
+                p Currently has: #{person.points} points
+                - var admin = false;
+                each inorg in person.studentname.adminorganization
+                    if inorg.ad_org_name == org_data.org_name
+                        - admin = true;
+                if admin
+                    p This user is already an admin
+                else
+                    p This user is not an admin. Do you want this user to be an admin?
+                    button.button(type='button',onclick=`location.href = '/${student._id}/${org_data.org_short_name}/studentlogs/${person.studentname._id}'`) Make me admin!
+            br
 

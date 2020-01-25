@@ -67,7 +67,7 @@ app.use(signout);
 app.use(profile);
 app.use(events);
 app.use(organization);
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(path.join(__dirname, '../public')));
 
 // Handler for 404 - Resource Not Found
 app.use((req,res,next)=>{
