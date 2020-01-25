@@ -20,13 +20,14 @@ block content
         p Sorry but currently there are no Events in the organization. If you think this shouldn't be the case, contact an admin of your organization.
     else 
         ul.org
+            - var i = 0;
             each event in eventlist
                 li.list
                     - var allowpass = event.openpass
                     h3 #{event.event_name}
                     p #[strong Event Description:] #{event.description}
-                    - var day = event.event_day.toString();
-                    p #[strong Event Day:] #{day}
+                    p #[strong Event Day:] #{date[i]} CST
+                    - i++;
                     p #[strong Event Duration:] #{event.duration} minutes
                     p #[strong Event Location:] #{event.location}
                     if event.status == "Ongoing"

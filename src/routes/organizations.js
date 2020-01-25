@@ -3,6 +3,7 @@ let StudentModel = require('../models/person');
 let OrgSchema = require('../models/organization_mod');
 let mongoose = require('mongoose');
 let express = require('express');
+let moment = require('moment-timezone');
 let router = express.Router();
 
 // Check if user has logged in, if so, they can access the page (MiddleWare)
@@ -98,6 +99,7 @@ router.get('/:userId/:organization/desc',needsLog,(req,res,next)=>{
                     // Get Events
                     EventModel.find({organization: org.org_name}).sort({event_day: 1})
                         .exec((err,events)=>{
+                            let day = [];
                             let del = 0;
                             // Update the events
                             for(var i = 0; i<events.length-del; i++){
@@ -123,6 +125,7 @@ router.get('/:userId/:organization/desc',needsLog,(req,res,next)=>{
                                             })
                                     }
                                 }
+                                day.push(moment(events[i].event_day).tz('America/Chicago').format('YYYY-MM-DD HH:mm:ss'));
                             }
                             if(err){
                                 return next(err);
@@ -168,8 +171,11 @@ router.get('/:userId/:organization/desc',needsLog,(req,res,next)=>{
                                             // console.log(req.params.organization);
                                             // console.log(user);
                                             // console.log(empty);
+
+
                             
                                             res.render('org_page',{
+                                                date: day,
                                                 page: org.org_name,
                                                 org_data: org,
                                                 student: user,
