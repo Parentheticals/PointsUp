@@ -52,6 +52,7 @@ block content
                             p Currently you are unable to sign into the event. This is because it has not started yet or it has already ended.
                     
                     if addevent
+                        p Do you want to delete the event?
                         button.button(type='button',onclick=`location.href = '/${student._id}/${org_data.org_short_name}/${event._id}/delete'`) Delete the event
     if addevent
         br
