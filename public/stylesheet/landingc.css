@@ -1,63 +1,8 @@
 body.land{
-    background-color: #Ccecff;
-    font-family: 'Helvetica', serif;
+    background-color: rgb(255, 255, 255);
+    font-family: 'Courier New', serif;
     margin: 0;
     padding: 0;
-}
-
-.line{
-    background-color: #0096c9;
-    height:15px;
-}
-
-ul.navbar {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #00478e 
-}
-
-li.nav{
-    float: left;
-    display: flex;
-}
-
-li.navlogo{
-    float: left;
-    display: flex;
-    position: relative;
-    left: 0px;
-}
-
-li.nav.one{
-    position: relative;
-    left: 35%;
-}
-
-li.nav.two{
-    position: relative;
-    right: 10px;
-}
-
-li.navlogo a.logo{
-    color: #Ccecff;
-    text-align: center;
-    padding: 15px 15px;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-li.nav a.navi{
-    display: block;
-    color: #Ccecff;
-    text-align: center;
-    padding: 15px 15px;
-    text-decoration: none;
-}
-
-li.nav a.navi:hover{
-    background-color: #0064c9;
 }
 
 .link {
@@ -65,17 +10,114 @@ li.nav a.navi:hover{
     color: #Ccecff
 }
 
-.logoimg{
-    position: relative;
-    right: 0px;
-    float: right;
+.title{
+    text-align: center;
+    font-size: 10vw;
 }
 
-.title{
-    width: 420px;
-    height: 48px;
-    padding: 0px 0px;
-    margin: 0px 0px;
-    border: 0px 0px;
+.arrow-up {
+    width: 0; 
+    height: 0; 
+    border-left: 1vw solid transparent;
+    border-right: 1vw solid transparent;
+    border-bottom: 2vw solid black;
+}
+
+.draw{
+    width: 50vw;
+    height: 4vw;
+    text-align: center;
+}
+
+.line{
+    position: absolute;
+    left: 20vw;
+    top: 23vw;
+    width: 60vw;
+    height: 10px;
+    border-bottom : 0.3vw solid black;
+}
+
+.arrow{
+    position: absolute;
+    left: 50%;
+}
+
+.space1{
+    height: 10vw;
+}
+
+.space2{
+    height: 6vw;
+}
+
+.space3{
+    height: 3vw;
+}
+
+.space4{
+    height: 1vw;
+}
+
+.square{
+    width: 20px;
+    height: 20px;
+    background-color: black;
+    border-bottom: 0px;
+    border-left: 0px;
+    border-right: 0px;
+    border-top: 0px;
+    transition: 2s;
     float: left;
+}
+
+.cont_list{
+    width: 40vw;
+    text-align: center;
+    margin: auto;
+}
+
+.square:hover{
+    transform: rotate(90deg)
+}
+
+.right{
+    position: absolute;
+    left: 50vw;
+}
+
+ul{
+    list-style-type: none
+}
+
+div.lileft{
+    position: absolute;
+    width: 10vw;
+    left: 33vw;
+}
+
+div.liright{
+    position: absolute;
+    width: 10vw;
+    left: 57vw;
+}
+
+.buttons{
+    padding: 0;
+    width: 12vw;
+    height: 4vw;
+    border: none;
+    background: none;
+    font-size: 2.7vw;
+    transition: 0.5s;
+}
+
+.buttons:hover{
+    border-bottom: 2px solid black;
+    border-top: 2px solid black;
+}
+
+.about{
+    position: absolute;
+    left: 45vw;
 }

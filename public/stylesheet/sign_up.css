@@ -4,46 +4,78 @@ body.sign{
 
 .main{ 
     padding:20px; 
-    font-family: 'Helvetica', serif; 
-    background-color: #Ccecff; 
 } 
-.main h1{ 
-    font-size: 40px; 
-    text-align:center; 
-    font-family: 'Helvetica', serif; 
-      
+
+p {
+    font-size: 1.7vw;
+    margin: 0.2vw;
+}
+
+p.disc{
+    font-size: 1.2vw;
+}
+
+h1{ 
+    font-size: 7vw; 
+    text-align:center;
 } 
+
 input{ 
-    font-family: 'Helvetica', serif; 
+    margin: 0;
+    padding: 1vw 2vw;
+    border: 0;
     width: 100%; 
-    font-size: 20px; 
-    padding: 12px 20px; 
-    margin: 8px 0;
-    background-color: #Ccecff;
+    font-size: 1.7vw; 
     border: none; 
-    border-bottom: 2px solid #0096c9; 
+    border-bottom: 2px solid black; 
 } 
+
 input[type=submit] { 
-    font-family: 'Helvetica', serif; 
+    font-size: 1.7vw;
     width: 100%; 
-    background-color: #0096c9; 
-    border: none; 
-    color: #Ccecff; 
-    padding: 16px 32px; 
+    border: none;
+    background: none; 
+    padding: 1vw 2vw; 
     margin: 4px 2px; 
     border-radius: 10px; 
 }
 button {
-    font-family: 'Helvetica', serif; 
     width: 100%; 
-    background-color: #0096c9; 
     border: none; 
-    color: #Ccecff; 
     padding: 16px 32px; 
     margin: 4px 2px; 
     border-radius: 10px; 
 }
 
-.formc{
-    background-color: #Ccecff
+.arrow-right {
+    position: absolute;
+    top: 7vw;
+    left: 30vw;
+    width: 0; 
+    height: 0; 
+    border-left: 6vw solid black;
+    border-top: 3vw solid transparent;
+    border-bottom: 3vw solid transparent;
+}
+
+.arrow-up2 {
+    position: absolute;
+    top: 7vw;
+    left: 30vw;
+    width: 0; 
+    height: 0; 
+    border-bottom: 6vw solid black;
+    border-right: 3vw solid transparent;
+    border-left: 3vw solid transparent;
+}
+
+.nextright {
+    position: absolute;
+    top: 6vw;
+    left: 40vw;
+}
+
+.cont_form{
+    width: 70vw;
+    margin: auto;
 }
