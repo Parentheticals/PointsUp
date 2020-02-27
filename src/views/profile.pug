@@ -17,12 +17,13 @@ block content
                         h1.numpoint #{point.allpoints}
                         p.center points
                     .space4
-                    p.right Check the events #{point.p_org_shname} is hosting!
-                    button.left.button(type='button',onclick=`location.href = '/${student._id}/${point.p_org_shname}/desc'`) Events
-                    br
-                    p.right Check the logs
-                    button.left.button(type='button',onclick=`location.href = '/${student._id}/${point.p_org_shname}/logs'`) Logs
-                    .space3
+                    .nleft.textsquare
+                        p.right Events #{point.p_org_shname} is hosting!
+                        button.left.button(type='button',onclick=`location.href = '/${student._id}/${point.p_org_shname}/desc'`) Events
+                        br
+                        p.right Check the logs
+                        button.left.button(type='button',onclick=`location.href = '/${student._id}/${point.p_org_shname}/logs'`) Logs
+                    .space6
                 br
     .currevent
         h1 Ongoing Events:
