@@ -111,3 +111,8 @@ div.liright{
     position: absolute;
     left: 45vw;
 }
+
+.title{
+    text-align: center;
+    font-size: 10vw;
+}
