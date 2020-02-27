@@ -1,31 +1,53 @@
 extends page_layout
 
 block content
-    h1 Hello #{student.name}! Welcome to Points Up!
-    br
-    p If you want to return to this page, just click your name in the navigation bar.
-    br
-    h5 Here are the organizations in which you are a member of!
-    br
-    div.container
+    h1.title Hello #{student.name}!
+    p.center Everything started with a single point...
+    .space4
+    .verticalline
+    .line_profile
+    .space4
+    .organization
+        h1 Organizations:
         ul.org
             each point in totalpoints
                 li.list
                     h3= point.p_org_name
-                    p.right Amount of points you currently have in #{point.p_org_shname}:
-                    p.left.points #{point.allpoints}
-                    br
+                    .pointsquare
+                        h1.numpoint #{point.allpoints}
+                        p.center points
+                    .space4
                     p.right Check the events #{point.p_org_shname} is hosting!
-                    button.left.button(type='button',onclick=`location.href = '/${student._id}/${point.p_org_shname}/desc'`) Events!
+                    button.left.button(type='button',onclick=`location.href = '/${student._id}/${point.p_org_shname}/desc'`) Events
                     br
-                    p All the events you have sign in into are logged. If you are an admin, you can also check everyone's points.
-                    p.right To do so, check the logs!
+                    p.right Check the logs
                     button.left.button(type='button',onclick=`location.href = '/${student._id}/${point.p_org_shname}/logs'`) Logs
-                    br
-                    button.button(type='button',onclick=`location.href = '/${student._id}/${point.p_org_shname}/leave'`) Leave the Organization
+                    .space3
                 br
-    br
-    p In case you are wandering how to get more points, just check if your organization has any events in the events tab. Go to the event and they are supposed to show you a pin. You will just need to write this pin in the password box in the events tab and bum! You got some points!
+    .currevent
+        h1 Ongoing Events:
+        ul.org
+            each event in current_events
+                li.list
+                    h3= event.p_org_shname
+                    p= event.current_event.event_name
+                    - var allowpass = event.current_event.openpass
+                    - var found = false;
+                    each point in student.points
+                        if point.event_name == event.current_event.event_name
+                            - found = true;
+                    if found
+                        p.gotpoints You have successfully claimed your points!
+                    else
+                        if allowpass
+                            form(method='POST' action=`/${student._id}/${event.p_org_shname}/${event.current_event._id}/pass`)
+                                label(for='pw') Enter a four letter ping in order to sign into this event!
+                                input#pw(type='password', name='password')
+                                button.button(type='submit') Claim Points!
+                        else
+                            p Currently you are unable to sign into the event. This is because it has not started yet or it has already ended.
+    p.textend In case you are wandering how to get more points, just check if your organization has any events in the events tab. Go to the event and they are supposed to show you a pin. You will just need to write this pin in the password box in the events tab and bum! You got some points!
     br
     br
     button.button(type='button',onclick=`location.href = '/${student._id}/organization/all'`) Explore organizations!
+

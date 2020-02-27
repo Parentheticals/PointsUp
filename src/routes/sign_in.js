@@ -12,7 +12,9 @@ router.post('/sign_in',(req,res,next)=>{
         if(err || !user ){ //weird stuff that is not supposed to happen
             let err = new Error("Wrong email or password");
             err.status = 401;
-            return next(err);
+            return res.render('signin',{
+                wrong_pass: true
+            });
         } else {
             req.session.userId = user._id;
             // Update this
@@ -27,7 +29,9 @@ router.post('/sign_in',(req,res,next)=>{
 
 // Go to sign_in html file
 router.get('/sign_in_form',(req,res)=>{
-    return res.render('signin');
+    return res.render('signin',{
+        wrong_pass: false
+    });
 })
 
 module.exports = router;

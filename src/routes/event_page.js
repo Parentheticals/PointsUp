@@ -102,7 +102,7 @@ router.post('/:userId/:organization/:eventId/pass',(req,res,next)=>{
                         if(err){
                             return next(err);
                         } else {
-                            return res.redirect(`/${req.params.userId}/${req.params.organization}/desc`);
+                            return res.redirect(`/${req.params.userId}/profile`);
                         }
                     })
                 })

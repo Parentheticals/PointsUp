@@ -9,24 +9,21 @@ html(lang='en')
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous")
 
         style
+            include ../../public/stylesheet/landingc.css
             include ../../public/stylesheet/layout.css
             include ../../public/stylesheet/lists.css
             include ../../public/stylesheet/forms.css
             include ../../public/stylesheet/misc.css
 
-        title PointsUp!
-    body 
-        ul.navbar
-            li.navlogo
-                a.logo Points Up!
-            li
-                a.top(href=`/${student._id}/profile`) You are currently logged as: #{student.name}
-            li
-                p.top You are currently in: #{page}
-            li.nav
-                a.navi(href="/sign_out") Sign Out
-        div.line
-        br
+        title Welcome to PointsUp!
+
+    body.land
+        ul.navigation
+            .space4
+            li.nleft
+                p.logo Points Up
+            li.nright
+                a.nav(href="/sign_out") Sign Out
         div.cont
             block content
         br

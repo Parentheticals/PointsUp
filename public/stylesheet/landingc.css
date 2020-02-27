@@ -1,18 +1,9 @@
 body.land{
     background-color: rgb(255, 255, 255);
     font-family: 'Courier New', serif;
+    text-decoration: none;
     margin: 0;
     padding: 0;
-}
-
-.link {
-    font-family: 'Helvetica', serif;
-    color: #Ccecff
-}
-
-.title{
-    text-align: center;
-    font-size: 10vw;
 }
 
 .arrow-up {
@@ -59,6 +50,10 @@ body.land{
     height: 1vw;
 }
 
+.space5{
+    height: 0.5vw;
+}
+
 .square{
     width: 20px;
     height: 20px;
@@ -79,11 +74,6 @@ body.land{
 
 .square:hover{
     transform: rotate(90deg)
-}
-
-.right{
-    position: absolute;
-    left: 50vw;
 }
 
 ul{

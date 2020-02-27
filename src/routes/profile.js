@@ -20,6 +20,54 @@ function needsLog(req,res,next){
     }
 }
 
+function getcurrentevent(org_name){
+    EventModel.find({})
+        .exec((err,events)=>{
+            if(err){
+                return next(err);
+            }
+            // Update events
+            let del = 0;
+            // console.log("Here inside");
+            for(var i = 0; i<events.length-del; i++){
+                if(events[i].event_day.getTime()<=Date.now() && events[i].event_day.getTime()>=(Date.now()-events[i].duration*60*1000)){
+                    events[i].status = "Ongoing";
+                    events[i].openpass = true;
+                    events[i].save();
+                } else {
+                    events[i].openpass = false;
+                    // Event has not yet started
+                    if(events[i].event_day.getTime()>Date.now()){
+                        events[i].status = "Scheduled";
+                        events[i].save();
+                    } else {
+                        events[i].status = "Done";
+                        EventModel.findByIdAndRemove(events[i]._id)
+                            .then(doc => {
+                                del++;
+                                i--;
+                            })
+                            .catch(err => {
+                                res.status(500).json(err)
+                            })
+                    }
+                }
+            }
+            // console.log("Here again");
+            for(var i = 0; i < events.length; i++){
+                // console.log("In Loop");
+                // console.log(events[i].event_name);
+                // console.log(events[i].status === "Ongoing");
+                if(events[i].organization == org_name && (events[i].status) === ("Ongoing")){
+                    console.log(events[i].event_name);
+                    return events[i];
+                }
+            }
+            return null;
+        })
+    return null;
+}
+
 // Get information of the person that logged in
 router.get('/:userId/profile',(req,res,next)=>{
 
@@ -28,6 +76,8 @@ router.get('/:userId/profile',(req,res,next)=>{
     // console.log(StudentModel.findById(req.session.userId))
 
     // Get all organizations
+    EventModel.find({})
+        .exec((err,events)=>{
     OrgSchema.find({})
         .exec((err,orglist)=>{
             if(err){
@@ -48,7 +98,9 @@ router.get('/:userId/profile',(req,res,next)=>{
                             err.status = 400;
                             return next(err);
                         }
+                        // console.log("e");
                         let arraysum = [];
+                        let currevents = [];
                         for(var i = 0; i<user.organization.length; i++){ // Get the org in which the person in inside
                             let sum = 0;
                             for(var j = 0; j<user.points.length; j++){
@@ -61,26 +113,80 @@ router.get('/:userId/profile',(req,res,next)=>{
                                 }
                             }
                             let p_org_short_name = "";
-                            for(var k = 0; k<orglist.length; k++){
+                            for(var k = 0; k<orglist.length - 1 ; k++){
+                                
+                                // console.log(orglist[k]);
                                 if(orglist[k].org_name == user.organization[i].org_name){
                                     p_org_short_name = orglist[k].org_short_name
+
+                                    // console.log("I'm here before push");
+
+                                    arraysum.push({
+                                        p_org_shname: p_org_short_name,
+                                        p_org_name: user.organization[i].org_name,
+                                        allpoints: sum
+                                    });
+
+                                            // console.log("I'm here in events")
+                                            if(err){
+                                                return next(err);
+                                            }
+                                            // Update events
+                                            let del = 0;
+                                            // console.log("Here inside");
+                                            for(var i = 0; i<events.length-del; i++){
+                                                if(events[i].event_day.getTime()<=Date.now() && events[i].event_day.getTime()>=(Date.now()-events[i].duration*60*1000)){
+                                                    events[i].status = "Ongoing";
+                                                    events[i].openpass = true;
+                                                    events[i].save();
+                                                } else {
+                                                    events[i].openpass = false;
+                                                    // Event has not yet started
+                                                    if(events[i].event_day.getTime()>Date.now()){
+                                                        events[i].status = "Scheduled";
+                                                        events[i].save();
+                                                    } else {
+                                                        events[i].status = "Done";
+                                                        EventModel.findByIdAndRemove(events[i]._id)
+                                                            .then(doc => {
+                                                                del++;
+                                                                i--;
+                                                            })
+                                                            .catch(err => {
+                                                                res.status(500).json(err)
+                                                            })
+                                                    }
+                                                }
+                                            }
+                                            // console.log("Here again");
+                                            for(var l = 0; l < events.length; l++){
+                                                // console.log("In Loop");
+                                                // console.log(events[l].event_name);
+                                                // console.log(events[i].status === "Ongoing");
+                                                if(events[l].organization == orglist[k].org_name && (events[l].status) === ("Ongoing")){
+                                                    // console.log(events[l].event_name);
+                                                    currevents.push({
+                                                        p_org_shname: p_org_short_name,
+                                                        current_event: events[l],
+                                                    })
+                                                    // console.log(currevents);
+                                                }
+                                            }
                                     break;
                                 }
                             }
-                            arraysum.push({
-                                p_org_shname: p_org_short_name,
-                                p_org_name: user.organization[i].org_name,
-                                allpoints: sum
-                            })
                         }
+                        // console.log(currevents);
+                        // console.log(arraysum);
                         return res.render('profile',{
                             student: user,
                             totalpoints: arraysum,
-                            page: "Profile"
+                            current_events: currevents
                         })
                     }
                 })
         })
+    })
 })
 
 router.get('/:userId/:organization/studentlogs/:memberId', (req,res,next)=>{
