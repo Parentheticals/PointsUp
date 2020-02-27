@@ -89,6 +89,11 @@ p.center{
     height: 7vw;
 }
 
+.button{
+    border: none;
+    background: none;
+}
+
 @media screen and (max-width: 1000px){
     div.organization {
         width: 80vw;
@@ -104,7 +109,7 @@ p.center{
         width: 70px;
     }
     .textsquare{
-        width: 50vw;
+        width: 35vw;
         height: 10vw;
     }
     .space6{
